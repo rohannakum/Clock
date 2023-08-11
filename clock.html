@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: black;
+            font-family: 'Orbitron', sans-serif;
+            color: red;
+        }
+
+        /* for time  */
+        #amPm{
+            display: none;
+        }
+        #amPm p {
+            font-size: 30px;
+            translate: 30px 50px;
+        }
+
+        .time {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0px;
+        }
+        #hr2{
+            display: none;
+        }
+
+        p {
+            font-size: 170px;
+        }
+
+        pre {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 170px;
+        }
+
+        /* For Day  */
+        .day {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0px;
+        }
+
+        /* For Date */
+        .date {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0px;
+        }
+
+        .date p {
+            font-size: 70px;
+        }
+
+        .date div pre {
+            font-size: 70px;
+        }
+
+        /* For button  */
+        #Buttons {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 70px;
+        }
+
+        #Buttons div button {
+            height: 70px;
+            width: 400px;
+            background: rgba(255, 0, 0, 0.300);
+            color: white;
+            font-size: 30px;
+            border: 0px;
+            border-radius: 20px;
+        }
+
+        #Buttons div button:hover {
+            background-color: rgba(255, 0, 0, 0.600);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="time">
+        <div id="amPm">
+        </div>
+        <div id="hr"></div>
+        <div id="hr2"></div>
+        <p>:</p>
+        <div id="min"></div>
+        <p>:</p>
+        <div id="sec"></div>
+    </div>
+    <div class="day">
+        <div id="day"></div>
+    </div>
+    <div class="date">
+        <div id="date1"></div>
+        <p>-</p>
+        <div id="month"></div>
+        <p>-</p>
+        <div id="year"></div>
+    </div>
+    <div id="Buttons">
+        <div id="Format1">
+            <button onclick="function1()">24Hr Clock Format </button>
+        </div>
+        <div id="Format2">
+            <button onclick="function2()">12Hr Clock Format Clock</button>
+
+        </div>
+    </div>
+
+
+    <!-- Java Script  -->
+    <Script>
+        const month = [
+            "January", "February", 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+
+        function time() {
+            const a = new Date();
+            const b = a.getHours();
+            const c = a.getMinutes();
+            const d = a.getSeconds();
+            const e = a.getDate();
+            const f = a.getMonth();
+            const g = a.getFullYear();
+            const h = a.getDay();
+            let i=b;
+            if (i>12) {
+                i=i-12;
+            }
+            else if(i==0){
+                i=12;
+            }
+            console.log(a)
+            document.getElementById("hr").innerHTML = `<pre> ${b} </pre>`;
+            document.getElementById("hr2").innerHTML = `<pre> ${i} </pre>`;
+            document.getElementById("min").innerHTML = `<pre> ${c} </pre>`;
+            document.getElementById("sec").innerHTML = `<pre> ${d} </pre>`;
+            document.getElementById("date1").innerHTML = `<pre> ${e} </pre>`;
+            document.getElementById("month").innerHTML = `<pre> ${month[f]} </pre>`;
+            document.getElementById("year").innerHTML = `<pre> ${g} </pre>`;
+            document.getElementById("day").innerHTML = `<pre> ${day[h]} </pre>`;
+            if (b < 12) {
+                document.getElementById("amPm").innerHTML = `<p> AM </p>`;
+            }
+            else if (b==12) {
+                document.getElementById("amPm").innerHTML = `<p> AM </p>`;
+            }
+            else {
+                document.getElementById("amPm").innerHTML = `<p> PM </p>`;
+            }
+        }
+        setInterval(time, 1000);
+
+        function function1() {
+            document.getElementById("amPm").style = "display:none;"
+            document.getElementById("hr2").style = "display:none;"
+            document.getElementById("hr").style = "display:inline;"
+
+        }
+        function function2() {
+            document.getElementById("amPm").style = "display:inline;"
+            document.getElementById("hr").style = "display:none;"
+            document.getElementById("hr2").style = "display:inline;"
+        }
+
+    </Script>
+</body>
+
+</html>
